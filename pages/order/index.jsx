@@ -46,7 +46,7 @@ const Order = () => {
         </div>
         <div className="flex flex-col items-center gap-1">
           <Image className="md:w-10 w-7" src="/images/bake.png" alt="paid" width={40} height={40} />
-          <span>Preparing.</span>
+          <span>Preparing</span>
         </div>
         <div className="flex flex-col items-center gap-1">
           <Image className="md:w-10 w-7" src="/images/bike.png" alt="paid" width={40} height={40} />
