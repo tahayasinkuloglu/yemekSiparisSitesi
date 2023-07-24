@@ -5,6 +5,7 @@ import Search from "../ui/Search";
 import { GiCancel } from "react-icons/gi";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import OutsideClickHandler from "react-outside-click-handler";
 
 const CustomLink = ({ href, title }) => {
   const router = useRouter();
@@ -23,6 +24,12 @@ const Header = () => {
   const [isSearchModal, setIsSearchModal] = useState(false);
   const [isMenuModal, setIsMenuModal] = useState(false);
 
+  const toggleModal = (time) => {
+    setTimeout(() => {
+      setIsMenuModal(!isMenuModal);
+    }, time||100)
+  }
+
   const router = useRouter();
 
   return (
@@ -30,29 +37,31 @@ const Header = () => {
       <div className="container mx-auto text-white flex justify-between items-center h-full">
         <Logo />
 
-        <nav className={`hidden absolute top-0 left-0 h-screen w-full text-black bg-white
-                         sm:static sm:w-auto sm:h-auto sm:text-white sm:bg-transparent sm:flex
-                         ${isMenuModal === true && "!grid place-content-center"}`}>
-          <ul className="flex items-center flex-col gap-10 sm:flex-row sm:gap-x-2">
-            <li className="px-[5px] uppercase hover:text-primary duration-200">
-              <CustomLink href="/" title='Home'/>
-            </li>
-            <li className="px-[5px] uppercase hover:text-primary duration-200">
-            <CustomLink href="/menu" title='Menu'/>
-            </li>
-            <li className="px-[5px] uppercase hover:text-primary duration-200">
-            <CustomLink href="/about" title='About'/>
-            </li>
-            <li className="px-[5px] uppercase hover:text-primary duration-200">
-            <CustomLink href="/reservation" title='Reservation'/>
-            </li>
-          </ul>          
-          {isMenuModal && (
-            <button className="absolute top-3 right-3" onClick={() => setIsMenuModal(false)}>
-              <GiCancel size={25} className="hover:text-primary duration-150 sm:hidden" />
-            </button>
-          )}
-        </nav>
+        <OutsideClickHandler onOutsideClick={() => setIsMenuModal(false)}>
+          <nav className={`hidden fixed top-0 left-0 h-screen w-1/2 text-black bg-white
+                          sm:static sm:w-auto sm:h-auto sm:text-white sm:bg-transparent sm:flex
+                          ${isMenuModal === true && "!grid place-content-center"}`}>
+            <ul className="flex items-center flex-col gap-10 sm:flex-row sm:gap-x-2">
+              <li className="px-[5px] uppercase hover:text-primary duration-200" onClick={() => toggleModal()}>
+                <CustomLink href="/" title='Home'/>
+              </li>
+              <li className="px-[5px] uppercase hover:text-primary duration-200" onClick={() => toggleModal()}>
+              <CustomLink href="/menu" title='Menu'/>
+              </li>
+              <li className="px-[5px] uppercase hover:text-primary duration-200" onClick={() => toggleModal()}>
+              <CustomLink href="/about" title='About'/>
+              </li>
+              <li className="px-[5px] uppercase hover:text-primary duration-200" onClick={() => toggleModal()}>
+              <CustomLink href="/reservation" title='Reservation'/>
+              </li>
+            </ul>          
+            {isMenuModal && (
+              <button className="absolute top-3 right-3" onClick={() => toggleModal(1)}>
+                <GiCancel size={25} className="hover:text-primary duration-150 sm:hidden" />
+              </button>
+            )}
+          </nav>
+        </OutsideClickHandler>
 
         <div className="flex gap-x-4 items-center">
           <Link href="/auth/login" className="hover:text-primary duration-200">

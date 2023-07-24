@@ -5,7 +5,7 @@ import { GiCancel } from 'react-icons/gi';
 
 const Search = ({ setIsSearchModal }) => {
   return (
-    <div className="absolute w-screen z-50 h-screen top-0 left-0 grid place-content-center
+    <div className="fixed w-screen z-50 h-screen top-0 left-0 grid place-content-center
     after:content-[''] after:w-screen after:bg-white after:h-screen after:absolute after:top-0 after:left-0 after:opacity-60">
       <OutsideClickHandler onOutsideClick={() => setIsSearchModal(false)}>
         <div className='w-full h-full grid place-content-center'>
