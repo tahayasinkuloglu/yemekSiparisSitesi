@@ -1,4 +1,4 @@
-const Input = (props) => {
+const Input = (props, className) => {
   const { type, errorMessage, touched, placeholder, ...inputProps } = props;
 
   return (
@@ -13,8 +13,8 @@ const Input = (props) => {
           {...inputProps}
         />
         <span
-          className="absolute flex top-0 left-0 px-4 h-full items-center cursor-text duration-200 opacity-50
-        peer-focus:h-5 peer-focus:text-sm peer-valid:h-5 peer-valid:text-sm"
+          className="absolute flex top-0 left-0 px-4 h-full items-center cursor-text duration-200 opacity-40
+        peer-focus:h-5 peer-focus:text-[12px] peer-valid:h-5 peer-valid:text-[12px]"
         >
           {placeholder}
         </span>
