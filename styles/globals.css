@@ -13,6 +13,15 @@
 }
 
 .slick-dots {
+    @apply !flex !container !ml-[50%] -translate-x-1/2 md:!justify-start !justify-center;
+}
+.slick-dots .slick-active div {
+    @apply bg-primary w-5 h-5 absolute -top-1 -left-1;
+}
+.slick-dots div {
+    @apply !m-0 !mt-10 !absolute;
+}
+/* .slick-dots {
     @apply !flex sm:!justify-start w-full !justify-center;
 }
 .slick-dots .slick-active div {
@@ -20,7 +29,7 @@
 }
 .slick-dots div {
     @apply !m-0 !mt-10;
-}
+} */
 
 @tailwind base;
 @tailwind components;
